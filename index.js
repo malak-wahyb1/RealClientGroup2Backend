@@ -3,7 +3,12 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import connectDB from "./Config/db.js";
 import PaymentRoute from "./routes/paymentRoute.js";
+
 import CategoryRoute from "./routes/categoryRoute.js";
+
+import newsLetterRoute from "./routes/newsLetterRoute.js";
+
+
 dotenv.config();
 await connectDB();
 const port = process.env.PORT || 8000;
@@ -17,7 +22,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/payment", PaymentRoute);
+
 app.use('/category',CategoryRoute)
+
+app.use("/newsletter", newsLetterRoute);
+
 app.use("*", (req, res) => {
   res.status(404).send({ message: "404 Not Found" });
 });
