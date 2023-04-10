@@ -6,6 +6,7 @@ import PaymentRoute from "./routes/paymentRoute.js";
 
 import CategoryRoute from "./routes/categoryRoute.js";
 import newsLetterRoute from "./routes/newsLetterRoute.js";
+import OfferRoute from "./routes/offerRoute.js";
 
 dotenv.config();
 await connectDB();
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/payment", PaymentRoute);
 app.use('/category',CategoryRoute)
 app.use("/newsletter", newsLetterRoute);
+app.use("/offer",OfferRoute);
 app.use("*", (req, res) => {
   res.status(404).send({ message: "404 Not Found" });
 });
