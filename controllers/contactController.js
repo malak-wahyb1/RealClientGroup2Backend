@@ -1,21 +1,21 @@
 import Contact from "../models/contactModel.js";
-import fs from "fs";
 
 export function createContact(req ,res,next){
-    const contact = new Contact (req.body);
+    const contact = new Contact(req.body);
     contact.save().then((response)=>{
     res
-     .status(200)
+     .status(201)
      .send({status:201 , message :response})
-     .catch((err) =>{
-        next(err);
-     });
-    });
+    
+    })
+    .catch((err) =>{
+      next(err);
+   });
 }
 export function getContacts(req , res ,next){
     Contact.find({})
      .then((data) =>{
-        res.status(200).send({status :200 , message});
+        res.status(200).send({status :200 , message:data});
      })
      .catch((err)=>{
         next(err);

@@ -3,18 +3,26 @@ const { Schema , model } = mongoose;
 
 const contactSchema = new Schema(
     {
-        Email:{
+        fullName:{
             type:"string",
-            require:true,
+            required:true,
         },
-        Password:{
+        email:{
             type:"string",
-            require:true,
+            required:true,
+            match: /.+\@.+\..+/,
+         
         },
-        timetamps:{
-            createdAt:"created_at",
-            updatedAt:"updated_at",
-        },
+        message:{
+            type:"string",
+            required:true,
+        }
+    },{
+        timestamps: {
+            createdAt: "created_at",
+            updatedAt: "updated_at",
+          },
     }
 );
-const Contact = model ("Contact" , contactSchema)
+const Contact = model("Contact" , contactSchema)
+export default Contact;
