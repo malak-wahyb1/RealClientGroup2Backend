@@ -3,9 +3,12 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import connectDB from "./Config/db.js";
 import PaymentRoute from "./routes/paymentRoute.js";
-
 import CategoryRoute from "./routes/categoryRoute.js";
 import newsLetterRoute from "./routes/newsLetterRoute.js";
+
+import ContactRoute from './routes/contactRoute.js'
+import SubCategoryRoute from './routes/subCategoryRoute.js'
+
 import OfferRoute from "./routes/offerRoute.js";
 
 dotenv.config();
@@ -22,6 +25,8 @@ app.get("/", (req, res) => {
 app.use("/payment", PaymentRoute);
 app.use('/category',CategoryRoute)
 app.use("/newsletter", newsLetterRoute);
+app.use("/contact", ContactRoute);
+app.use("/subCategory",SubCategoryRoute)
 app.use("/offer",OfferRoute);
 app.use("*", (req, res) => {
   res.status(404).send({ message: "404 Not Found" });

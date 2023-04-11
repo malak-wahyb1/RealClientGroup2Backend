@@ -18,5 +18,7 @@ const categorySchema = new Schema({
         updatedAt: "updated_at",
       },
 });
+
+
 const Category=model('Category',categorySchema)
 export default Category;

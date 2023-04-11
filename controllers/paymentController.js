@@ -6,9 +6,9 @@ export function createPayment(req, res, next) {
     res
       .status(200)
       .send({ status: 201, message: response })
-      .catch((err) => {
-        next(err);
-      });
+    
+  }).catch((err) => {
+    next(err);
   });
 }
 
