@@ -6,7 +6,7 @@ import {
   getOffers,
   editOffer,
   deleteOffer
-} from "../controllers/OfferController.js";
+} from "../controllers/offerController.js";
 
 router.post("/", createOffer);
 router.get("/:id", getOffer);
