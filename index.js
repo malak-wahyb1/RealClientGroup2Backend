@@ -5,6 +5,7 @@ import connectDB from "./Config/db.js";
 import PaymentRoute from "./routes/paymentRoute.js";
 import CategoryRoute from "./routes/categoryRoute.js";
 import newsLetterRoute from "./routes/newsLetterRoute.js";
+import CustomerRoute from "./routes/customerRoute.js";
 
 import ContactRoute from "./routes/contactRoute.js";
 import SubCategoryRoute from "./routes/subCategoryRoute.js";
@@ -28,7 +29,7 @@ app.use("/newsletter", newsLetterRoute);
 app.use("/contact", ContactRoute);
 app.use("/subCategory", SubCategoryRoute);
 app.use("/offer", OfferRoute);
-app.use("/customer", CutomerRoute);
+app.use("/customer", CustomerRoute);
 
 app.use("*", (req, res) => {
   res.status(404).send({ message: "404 Not Found" });

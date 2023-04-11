@@ -31,8 +31,8 @@ const customerSchema = new Schema(
     },
   }
 );
-subCategorySchema.pre(["find", "findOne"], function () {
-  this.populate("category");
-});
+// subCategorySchema.pre(["find", "findOne"], function () {
+//   this.populate("category");
+// });
 const Customer = model("customer", customerSchema);
 export default Customer;

@@ -1,4 +1,4 @@
-import Customer from "../models/customerModel";
+import Customer from "../models/customerModel.js";
 
 export function createCustomer(req, res, next) {
   const customer = new Customer(req.body);
