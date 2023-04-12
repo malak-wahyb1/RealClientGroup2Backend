@@ -6,7 +6,7 @@ import {
   getOrders,
   editOrder,
   deleteOrder
-} from "../controllers/OrderController.js";
+} from "../controllers/orderController.js";
 
 router.post("/", createOrder);
 router.get("/:id", getOrder);

@@ -39,5 +39,5 @@ const orderSchema = new Schema({
 orderSchema.pre(['find','findOne'],function(){
     this.populate(['customer','payment','product'])
 })
-const Order=model('Offer',orderSchema)
+const Order=model('Order',orderSchema)
 export default Order;

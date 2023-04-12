@@ -1,5 +1,6 @@
 import Customer from "../models/customerModel.js";
-
+import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
 export function createCustomer(req, res, next) {
   const customer = new Customer(req.body);
   customer
@@ -53,4 +54,37 @@ export function deleteCustomer(req, res, next) {
     .catch((error) => {
       next(error);
     });
+}
+
+export function loginCustomer(req, res, next) {
+ const userLoggingIn=req.body;
+  Customer.findOne({email: userLoggingIn.email})
+  .then((customer) => {
+    if(!customer){
+      res.send({message:"invalid customer"})
+
+    }
+    bcrypt.compare(userLoggingIn.password,customer.password)
+    .then((isCorrect)=>{
+      if(isCorrect){
+        const payload={
+          id:customer.id,
+          email:customer.email
+        }
+        jwt.sign(
+          payload,
+          process.env.JWT_KEY,
+          {expiresIn:86400},
+          (err,token)=>{
+            if(err) res.send({message:err})
+            res.send({message:"success",token:token})
+          }
+        )
+      }else{
+        res.status(403).send({message:"invalid_token"})
+      }
+    })
+  })
+
+  
 }
