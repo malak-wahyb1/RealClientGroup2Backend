@@ -6,10 +6,8 @@ import PaymentRoute from "./routes/paymentRoute.js";
 import CategoryRoute from "./routes/categoryRoute.js";
 import newsLetterRoute from "./routes/newsLetterRoute.js";
 import CustomerRoute from "./routes/customerRoute.js";
-
 import ContactRoute from "./routes/contactRoute.js";
 import SubCategoryRoute from "./routes/subCategoryRoute.js";
-
 import OfferRoute from "./routes/offerRoute.js";
 import OrderRoute from "./routes/orderRoute.js";
 
