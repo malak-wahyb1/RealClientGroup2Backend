@@ -69,7 +69,8 @@ export function loginCustomer(req, res, next) {
       if(isCorrect){
         const payload={
           id:customer.id,
-          email:customer.email
+          email:customer.email,
+          role:customer.role,
         }
         jwt.sign(
           payload,

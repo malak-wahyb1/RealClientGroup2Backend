@@ -8,11 +8,12 @@ import {
   editContact,
 } from "../controllers/contactController.js";
 
+import { isGeneralAdmin, verifyToken,isSuperAdmin } from '../middleware/auth.js';
 
-router.post("/", createContact);
-router.get("/", getContacts);
-router.get("/:id", getContact);
-router.delete("/:id", deleteContact);
-router.patch("/:id", editContact);
+router.post("/",verifyToken, createContact);
+router.get("/",verifyToken, isGeneralAdmin,getContacts);
+router.get("/:id",isGeneralAdmin, getContact);
+router.delete("/:id",isGeneralAdmin, deleteContact);
+router.patch("/:id",isGeneralAdmin, editContact);
 
 export default router;

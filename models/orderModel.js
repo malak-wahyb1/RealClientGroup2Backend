@@ -11,11 +11,11 @@ const orderSchema = new Schema({
     ref:"Customer",
     required:true,
   },
-  product:{
+  product:[{
     type:Schema.Types.ObjectId,
     ref:"Product",
     required:true,
-  },
+  }],
   payment:{
     type:Schema.Types.ObjectId,
     required:true,
