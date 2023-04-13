@@ -1,9 +1,11 @@
 import Admin from "../models/adminModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-const jwtSecret =
-  "40be2a3b6ca97b8544c563c0e5a51b7e6c8fff10db237a078cf0ab16198c6d7094da33";
-class Controller {
+// import dotenv from "dotenv";
+// dotenv.config();
+class Controller{
+
+
   async register(req, res, next) {
     const { username, password, email, first_name, last_name } = req.body;
     if (!password || password.length < 6) {
@@ -25,7 +27,7 @@ class Controller {
       const maxAge = 3 * 60 * 60;
       const token = jwt.sign(
         { id: user._id, username, role: user.role },
-        jwtSecret,
+        process.env.JWT_SECRET,
         {
           expiresIn: maxAge, // 3hrs in sec
         }
@@ -68,7 +70,9 @@ class Controller {
             const maxAge = 3 * 60 * 60;
             const token = jwt.sign(
               { id: user._id, username, role: user.role },
+
               process.env.JWT_KEY,
+
               {
                 expiresIn: maxAge, // 3hrs in sec
               }
@@ -130,8 +134,11 @@ class Controller {
     }
   }
 
-  async updateAdmin(req, res, next) {
-    const { username, password, last_name, first_name, email } = req.body;
+
+  async updateAdmin (req, res, next)  {
+    const {username, password, last_name, first_name, email } = req.body;
+
+
     const { id } = req.params;
 
     // Verify if the required fields are present
