@@ -1,7 +1,8 @@
 import Admin from"../models/adminModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-const jwtSecret='40be2a3b6ca97b8544c563c0e5a51b7e6c8fff10db237a078cf0ab16198c6d7094da33';
+// import dotenv from "dotenv";
+// dotenv.config();
 class Controller{
 
   async register(req, res, next) {
@@ -24,7 +25,7 @@ class Controller{
       const maxAge = 3 * 60 * 60;
       const token = jwt.sign(
         { id: user._id, username, role: user.role },
-        jwtSecret,
+        process.env.JWT_SECRET,
         {
           expiresIn: maxAge, // 3hrs in sec
         }
@@ -68,7 +69,7 @@ class Controller{
             const maxAge = 3 * 60 * 60;
             const token = jwt.sign(
               { id: user._id, username, role: user.role },
-              jwtSecret,
+              process.env.JWT_SECRET,
               {
                 expiresIn: maxAge, // 3hrs in sec
               }
@@ -129,37 +130,7 @@ class Controller{
       res.status(400).json({ message: "An error occurred", error: error.message });
     }
   }
-  // async updateAdmin(req, res, next) {
-  //   const { username,password,last_name,first_name,email} = req.body;
-  // const{id}=req.params
-  //   // Verify if the module  are present
-  //   if ( !username || !password || !last_name || !first_name || !email) {
-  //     return res.status(400).json({ message: "something not provided" });
-  //   }
-  
-  //   try {
-  //     const user = await Admin.findById( {_id : id});
-  
-  //     // Verify if user is found
-  //     if (!user) {
-  //       return res.status(400).json({ message: "Admin not found" });
-  //     }
 
-     
-  
-  //     // Update Admin
-  //     user.username
-  //     user.last_name
-  //     user.password
-  //     user.first_name
-  //     user.email
-  //     await user.save();
-  
-  //     res.status(201).json({ message: "Update Admin successful", user });
-  //   } catch (error) {
-  //     res.status(400).json({ message: "An error occurred", error: error.message });
-  //   }
-  // }
   async updateAdmin (req, res, next)  {
     const {username, password, last_name, first_name, email } = req.body;
     const { id } = req.params;
