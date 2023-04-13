@@ -24,6 +24,7 @@ const orderSchema = new Schema({
   status:{
     type:"string",
     required:true,
+    enum:['in progress', 'in the road ', 'i dont know']
   },
   note:{
     type:"string",
