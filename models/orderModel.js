@@ -11,11 +11,11 @@ const orderSchema = new Schema({
     ref:"Customer",
     required:true,
   },
-  product:{
+  product:[{
     type:Schema.Types.ObjectId,
     ref:"Product",
     required:true,
-  },
+  }],
   payment:{
     type:Schema.Types.ObjectId,
     required:true,
@@ -24,6 +24,7 @@ const orderSchema = new Schema({
   status:{
     type:"string",
     required:true,
+    enum:['in progress', 'in the road ', 'i dont know']
   },
   note:{
     type:"string",

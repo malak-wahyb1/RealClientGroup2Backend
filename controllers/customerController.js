@@ -1,5 +1,7 @@
 import Customer from "../models/customerModel.js";
-import bcrypt from 'bcryptjs';
+
+import bcrypt from 'bcryptjs'
+
 import jwt from "jsonwebtoken";
 export function createCustomer(req, res, next) {
   const customer = new Customer(req.body);
@@ -69,7 +71,8 @@ export function loginCustomer(req, res, next) {
       if(isCorrect){
         const payload={
           id:customer.id,
-          email:customer.email
+          email:customer.email,
+          role:customer.role,
         }
         jwt.sign(
           payload,

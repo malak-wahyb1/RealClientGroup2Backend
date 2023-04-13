@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs'
+
 const { Schema, model } = mongoose;
 
 const customerSchema = new Schema(
@@ -27,6 +28,10 @@ const customerSchema = new Schema(
       type: String,
       required: true,
     },
+    role:{
+      type:Number,
+      default:2
+    }
   },
   {
     timestamps: {
