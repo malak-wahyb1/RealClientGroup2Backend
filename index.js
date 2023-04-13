@@ -25,10 +25,10 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/api/auth",adminRouter);
 app.get("/", (req, res) => {
   res.send("you are connected!");
 })
+app.use("/auth",adminRouter);
 app.use("/payment", PaymentRoute);
 app.use("/category", CategoryRoute);
 app.use("/newsletter", newsLetterRoute);

@@ -26,10 +26,8 @@ const adminSchema = new Schema(
       type: String,
     },
     role: {
-      type: String,
-      enum:["admin","superAdmin"],
-      default: "admin",
-      require: true,
+      type: Number,
+      default: 0,
     },
   },
   { collection: "Admin", timestamps: true }

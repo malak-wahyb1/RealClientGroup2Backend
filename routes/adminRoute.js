@@ -1,13 +1,13 @@
 import express from "express";
 const router = express.Router();
 import controller from "../controllers/adminController.js"
-import SuperAdminAuth from "../middleware/verifySuperAdmin.js";
-import adminAuth from "../middleware/verifyAdmin.js";
-router.post("/register",SuperAdminAuth,controller.register)
+import { verifyToken,isSuperAdmin,isAdmin } from "../middleware/auth.js";
+
+router.post("/register",verifyToken,isSuperAdmin,controller.register)
 router.post("/login",controller.login)
-router.put("/upgrade/:id",SuperAdminAuth,controller.upgradeRole)
-router.delete("/delete/:id",SuperAdminAuth,controller.deleteAdmin)
-router.get("/getall",controller.getallAdmin)
-router.put("/update/:id",adminAuth,controller.updateAdmin)
+router.put("/upgrade/:id",verifyToken,isSuperAdmin,controller.upgradeRole)
+router.delete("/delete/:id",verifyToken,isSuperAdmin,controller.deleteAdmin)
+router.get("/",verifyToken,isSuperAdmin,controller.getallAdmin)
+router.put("/update/:id",verifyToken,isSuperAdmin,controller.updateAdmin)
 export default router;
 
