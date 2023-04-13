@@ -1,5 +1,5 @@
 import Customer from "../models/customerModel.js";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs'
 import jwt from "jsonwebtoken";
 export function createCustomer(req, res, next) {
   const customer = new Customer(req.body);
