@@ -8,12 +8,14 @@ import bodyParser from "body-parser";
 import PaymentRoute from "./routes/paymentRoute.js";
 import CategoryRoute from "./routes/categoryRoute.js";
 import newsLetterRoute from "./routes/newsLetterRoute.js";
+import aboutInfo from "./routes/aboutInfoRoute.js";
 import CustomerRoute from "./routes/customerRoute.js";
 import ContactRoute from "./routes/contactRoute.js";
 import SubCategoryRoute from "./routes/subCategoryRoute.js";
 import OfferRoute from "./routes/offerRoute.js";
 import OrderRoute from "./routes/orderRoute.js";
 import ProductRoute from "./routes/productRoute.js";
+
 
 dotenv.config();
 await connectDB();
@@ -34,6 +36,7 @@ app.use("/auth",adminRouter);
 app.use("/payment", PaymentRoute);
 app.use("/category", CategoryRoute);
 app.use("/newsletter", newsLetterRoute);
+app.use ("/aboutInfo", aboutInfo)
 app.use("/contact", ContactRoute);
 app.use("/subCategory",SubCategoryRoute)
 app.use("/offer",OfferRoute);
