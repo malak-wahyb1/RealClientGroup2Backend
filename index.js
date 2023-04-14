@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./Config/db.js";
 import PaymentRoute from "./routes/paymentRoute.js";
 import newsLetterRoute from "./routes/newsLetterRoute.js";
+import aboutInfo from "./routes/aboutInfoRoute.js";
 
 dotenv.config();
 await connectDB();
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/payment", PaymentRoute);
 app.use("/newsletter", newsLetterRoute);
+app.use ("/aboutInfo", aboutInfo)
 app.use("*", (req, res) => {
   res.status(404).send({ message: "404 Not Found" });
 });
