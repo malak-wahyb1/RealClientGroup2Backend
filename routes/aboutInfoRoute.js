@@ -1,17 +1,15 @@
 import express from 'express';
-import {getLink, updateLink, getMaps, addMap, updateMap, deleteMap } from '../controllers/aboutInfoController.js';
+import { getMaps,getMap, addMap, updateMap, deleteMap } from '../controllers/aboutInfoController.js';
 
 const aboutInfoRoute = express.Router();
 
-// Routes for links
-// aboutInfoRoute.post('/links', createLink);
-aboutInfoRoute.get('/links/:id', getLink);
-aboutInfoRoute.put('/links/:id', updateLink);
+import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-// Routes for maps
-aboutInfoRoute.get('/maps', getMaps);
-aboutInfoRoute.post('/maps', addMap);
-aboutInfoRoute.put('/maps/:mapId', updateMap);
-aboutInfoRoute.delete('/maps/:mapId', deleteMap);
+aboutInfoRoute.get('/', getMaps);
+aboutInfoRoute.get('/:id', getMap);
+
+aboutInfoRoute.post('/',verifyToken,isGeneralAdmin, addMap);
+aboutInfoRoute.put('/:id',verifyToken,isGeneralAdmin, updateMap);
+aboutInfoRoute.delete('/:id',verifyToken,isGeneralAdmin, deleteMap);
 
 export default aboutInfoRoute;

@@ -7,10 +7,11 @@ import {
   editOffer,
   deleteOffer
 } from "../controllers/offerController.js";
+import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-router.post("/", createOffer);
+router.post("/",verifyToken,isGeneralAdmin, createOffer);
 router.get("/:id", getOffer);
 router.get("/", getOffers);
-router.patch("/:id",editOffer)
-router.delete('/:id',deleteOffer)
+router.patch("/:id",verifyToken,isGeneralAdmin,editOffer)
+router.delete('/:id',verifyToken,isGeneralAdmin,deleteOffer)
 export default router;

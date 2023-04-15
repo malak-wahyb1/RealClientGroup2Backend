@@ -7,10 +7,11 @@ import {
   editOrder,
   deleteOrder
 } from "../controllers/orderController.js";
+import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-router.post("/", createOrder);
-router.get("/:id", getOrder);
-router.get("/", getOrders);
-router.patch("/:id",editOrder)
-router.delete('/:id',deleteOrder)
+router.post("/",verifyToken, createOrder);
+router.get("/:id",verifyToken, getOrder);
+router.get("/",verifyToken,isGeneralAdmin, getOrders);
+router.patch("/:id",verifyToken,isGeneralAdmin,editOrder)
+router.delete('/:id',verifyToken,isGeneralAdmin,deleteOrder)
 export default router;
