@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 import controller from "../controllers/adminController.js"
-import { verifyToken,isSuperAdmin,isAdmin } from "../middleware/auth.js";
+import { verifyToken,isSuperAdmin} from "../middleware/auth.js";
 
 router.post("/register",verifyToken,isSuperAdmin,controller.register)
 router.post("/login",controller.login)

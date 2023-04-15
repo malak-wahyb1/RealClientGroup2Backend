@@ -15,6 +15,7 @@ import SubCategoryRoute from "./routes/subCategoryRoute.js";
 import OfferRoute from "./routes/offerRoute.js";
 import OrderRoute from "./routes/orderRoute.js";
 import ProductRoute from "./routes/productRoute.js";
+import reviewRoute from "./routes/reviewRooute.js";
 
 
 dotenv.config();
@@ -44,6 +45,7 @@ app.use("/order",OrderRoute);
 app.use("/subCategory", SubCategoryRoute);
 app.use("/customer", CustomerRoute);
 app.use("/product", ProductRoute);
+app.use("/review", reviewRoute);
 
 app.use("*", (req, res) => {
   res.status(404).send({ message: "404 Not Found" });
