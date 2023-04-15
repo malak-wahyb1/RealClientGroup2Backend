@@ -24,6 +24,7 @@ export function isSuperAdmin(req, res, next) {
    
   } catch (err) {
     next(err);
+    res.send({ message:err.message });
   }
 }
 
@@ -39,5 +40,7 @@ export function isGeneralAdmin(req, res, next) {
         }
     }catch(err){
         next(err)
+    res.send({ message:err.message });
+
     }
 }

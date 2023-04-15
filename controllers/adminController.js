@@ -1,9 +1,11 @@
 import Admin from "../models/adminModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-// import dotenv from "dotenv";
-// dotenv.config();
+import mailgun from 'mailgun-js'
+
+
 class Controller{
+
 
 
   async register(req, res, next) {
@@ -27,7 +29,7 @@ class Controller{
       const maxAge = 3 * 60 * 60;
       const token = jwt.sign(
         { id: user._id, username, role: user.role },
-        process.env.JWT_SECRET,
+        process.env.JWT_KEY,
         {
           expiresIn: maxAge, // 3hrs in sec
         }
@@ -50,6 +52,7 @@ class Controller{
 
   async login(req, res, next) {
     const { username, password } = req.body;
+    const mg=mailgun({apiKey:process.env.API_KEYS,domain:process.env.DOMAIN})
     // Check if username and password is provided
     if (!username || !password) {
       return res.status(400).json({
@@ -86,6 +89,20 @@ class Controller{
               user: user._id,
               token,
             });
+            const data = {
+              from: "Admin Login <noreply@yourdomain.com>",
+              to: "malakwahyb537@gmail.com",
+              subject: "Admin Login Successful",
+              html: `<div>Admin ${user.username} logged in successfully.</div>`,
+            };
+            mg.messages().send(data,function(error,body){
+              if(error){
+                console.log(error);
+              }else{
+            console.log("okayyy")
+              }
+            })
+            
           } else {
             res.status(400).json({ message: "Login not successful" });
           }
@@ -116,7 +133,7 @@ class Controller{
       }
 
       // Verify if user is not already an superAdmin
-      if (user.role === "superAdmin") {
+      if (user.role === 1) {
         return res
           .status(400)
           .json({ message: "Admin is already a superAdmin" });
