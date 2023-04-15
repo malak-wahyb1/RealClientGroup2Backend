@@ -18,9 +18,24 @@ export const getReview = async (req, res) => {
     const feedback = await Review.findOne({_id:id});
     
     if (!feedback) {
-      return res.status(404).json({ msg: `No ${id} review found` });
+      return res.status(404).send({ msg: `No ${id} review found` });
     }
-    res.json(feedback);
+    res.send(feedback);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+};
+
+export const getReviews = async (req, res) => {
+  try {
+  
+    const feedback = await Review.find({});
+    
+    if (!feedback) {
+      return res.status(404).send({ msg: `No  reviews found` });
+    }
+    res.send(feedback);
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
@@ -43,8 +58,16 @@ export const updateReview = async (req, res) => {
   }
 };
 
-const data =async ()=>{
-    console.log(await Review.find({}))
-}
+export const deleteReview =async(req,res)=>{
+  try{
+    const {id} = req.params;
+    Review.findOneAndDelete({_id:id}).then(review=>{
+      res.status(200).send('Review deleted successfully');
 
-data()
+    }).catch(err=>{
+ res.status(500).send(err.message);
+    })
+  }catch(err){
+    res.status(500).send(err.message);
+  }
+}
