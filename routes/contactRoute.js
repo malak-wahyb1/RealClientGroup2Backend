@@ -11,9 +11,9 @@ import {
 import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
 router.post("/",verifyToken, createContact);
-router.get("/",isGeneralAdmin, isGeneralAdmin,getContacts);
-router.get("/:id",isGeneralAdmin, getContact);
-router.delete("/:id",isGeneralAdmin, deleteContact);
-router.patch("/:id",isGeneralAdmin, editContact);
+router.get("/",verifyToken, isGeneralAdmin,getContacts);
+router.get("/:id",verifyToken,isGeneralAdmin, getContact);
+router.delete("/:id",verifyToken,isGeneralAdmin, deleteContact);
+router.patch("/:id",verifyToken,isGeneralAdmin, editContact);
 
 export default router;

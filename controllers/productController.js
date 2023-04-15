@@ -5,7 +5,7 @@ class Controller {
   async  getByName(req, res, next) {
     let { name } = req.params;
     try {
-      const product = await Product.findOne({ name: name });
+      const product = await Product.find({ name: name });
       if (!product) {
         return res.status(404).json({ error: "Product not found" });
       }
@@ -31,11 +31,11 @@ class Controller {
   async  getById(req, res, next) {
     let { id} = req.params;
     try {
-      const product = await Product.findOne({ _id : id });
+      const product = await Product.findOne({ _id:id});
       if (!product) {
-        return res.status(404).json({ error: "Product not found" });
+        return res.status(404).send({ error: "Product not found" });
       }
-      res.status(200).json({ success: "Product found", product});
+      res.status(200).send({ success: "Product found", product});
     } catch (err) {
       next(err);
     }

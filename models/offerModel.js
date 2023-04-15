@@ -7,11 +7,30 @@ const offerSchema = new Schema({
     required: true,
     unique: true
   },
+  dateStart:{
+    type: "date",
+    required:true,
+  },
+  dateEnd:{
+    type: "date",
+    required:true,
+  },
+  product:[{
+    type:Schema.Types.ObjectId,
+    ref:"product"
+  }],
+  percentage:{
+    type: "number",
+    required:true,
+  }
 },{
     timestamps: {
         createdAt: "created_at",
         updatedAt: "updated_at",
       },
 });
+offerSchema.pre(['find','findOne'],function(){
+  this.populate(['product'])
+})
 const Offer=model('Offer',offerSchema)
 export default Offer;

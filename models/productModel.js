@@ -7,7 +7,7 @@ const productSchema = new Schema(
       required: true,
     },
     packaging: {
-      type: String,
+      type: Number,
       required: true,
     },
     image: {
@@ -15,7 +15,7 @@ const productSchema = new Schema(
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     brand: {

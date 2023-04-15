@@ -8,11 +8,12 @@ import {
   editPayment,
 } from "../controllers/paymentController.js";
 import uploadImage from "../middleware/image.js";
+import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-router.post("/", uploadImage, createPayment);
+router.post("/",verifyToken,isGeneralAdmin, uploadImage, createPayment);
 router.get("/", getPayments);
 router.get("/:id", getPayment);
-router.delete("/:id", deletePayment);
-router.patch("/:id", uploadImage, editPayment);
+router.delete("/:id",verifyToken,isGeneralAdmin, deletePayment);
+router.patch("/:id", verifyToken,isGeneralAdmin,uploadImage, editPayment);
 
 export default router;
