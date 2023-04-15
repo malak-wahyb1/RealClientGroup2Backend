@@ -18,6 +18,7 @@ const customerSchema = new Schema(
     email: {
       type: String,
       required: true,
+      match: /.+\@.+\..+/,
       unique:"the email is already used"
     },
     password: {

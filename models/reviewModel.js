@@ -4,7 +4,7 @@ import {Schema , model} from "mongoose";
 const reviewSchema = new Schema({
  customer:{
   type:Schema.Types.ObjectId,
-  required: function() { return  'test'; },
+  required: [true, 'Why no bacon?'],
   ref:"Customer"
  },
  message:{
