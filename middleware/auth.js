@@ -24,10 +24,12 @@ export function isSuperAdmin(req, res, next) {
    
   } catch (err) {
     next(err);
+    res.send({ message:err.message });
   }
 }
 
 export function isGeneralAdmin(req, res, next) {
+  console.log(req.user)
     try{
         if(req.user.role ===2){
             return res.send({ message: "you are not a  admin" }); 
@@ -39,5 +41,7 @@ export function isGeneralAdmin(req, res, next) {
         }
     }catch(err){
         next(err)
+    res.send({ message:err.message });
+
     }
 }

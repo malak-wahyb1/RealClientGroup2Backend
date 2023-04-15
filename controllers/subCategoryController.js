@@ -30,6 +30,16 @@ export function getSubCategory(req, res, next) {
       next(err);
     });
 }
+export function getSubCategoryByCategory(req, res, next) {
+  const { id } = req.params;
+  SubCategory.find({ category: id })
+    .then((category) => {
+      res.status(200).send({ status: 200, message: category });
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
 
 export function editSubCategory(req, res, next) {
   const { id } = req.params;

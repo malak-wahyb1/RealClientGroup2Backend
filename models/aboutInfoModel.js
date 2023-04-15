@@ -2,7 +2,15 @@ import {Schema , model} from "mongoose";
 
 
 const aboutInfoSchema = new Schema({
-  links: {
+  facebook: {
+    type: String,
+    required: true
+  },
+  instagram: {
+    type: String,
+    required: true
+  }, 
+   whatsapp: {
     type: String,
     required: true
   },

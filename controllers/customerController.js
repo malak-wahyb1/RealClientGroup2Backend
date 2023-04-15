@@ -68,24 +68,27 @@ export function loginCustomer(req, res, next) {
     }
     bcrypt.compare(userLoggingIn.password,customer.password)
     .then((isCorrect)=>{
-      if(isCorrect){
-        const payload={
-          id:customer.id,
-          email:customer.email,
-          role:customer.role,
-        }
-        jwt.sign(
-          payload,
+ 
+    
+        const token = jwt.sign(
+          { id: customer._id,email:customer.email, role: customer.role },
+
           process.env.JWT_KEY,
-          {expiresIn:86400},
-          (err,token)=>{
-            if(err) res.send({message:err})
-            res.send({message:"success",token:token})
+
+          {
+            expiresIn: 3000, 
           }
-        )
-      }else{
-        res.status(403).send({message:"invalid_token"})
-      }
+        );
+        res.cookie("jwt", token, {
+          httpOnly: true,
+          maxAge: 3000 * 1000, // 3hrs in ms
+        });
+        res.status(201).json({
+          message: "Admin successfully Logged in",
+          user: customer._id,
+          token,
+        });
+     
     })
   })
 

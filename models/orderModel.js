@@ -3,17 +3,17 @@ const { Schema, model } = mongoose;
 
 const orderSchema = new Schema({
   totalprice: {
-    type: "string",
+    type: "number",
     required: true,
   },
   customer:{
     type:Schema.Types.ObjectId,
-    ref:"Customer",
+    ref:"customer",
     required:true,
   },
   product:[{
     type:Schema.Types.ObjectId,
-    ref:"Product",
+    ref:"product",
     required:true,
   }],
   payment:{
@@ -23,7 +23,7 @@ const orderSchema = new Schema({
   },
   status:{
     type:"string",
-    required:true,
+    default:"in progress",
     enum:['in progress', 'in the road ', 'i dont know']
   },
   note:{
