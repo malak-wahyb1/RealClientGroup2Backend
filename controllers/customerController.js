@@ -92,5 +92,10 @@ export function loginCustomer(req, res, next) {
     })
   })
 
-  
 }
+
+export function  logout(req, res, next)  {
+     res.clearCookie('jwt');
+    res.status(200).send({ message: 'Logged out successfully' });
+ 
+}  
