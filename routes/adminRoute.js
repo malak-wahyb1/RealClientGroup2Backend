@@ -5,7 +5,7 @@ import controller from "../controllers/adminController.js"
 import { verifyToken,isSuperAdmin } from "../middleware/auth.js";
 
 
-router.post("/register",controller.register)
+router.post("/register",verifyToken,isSuperAdmin,controller.register)
 router.post("/login",controller.login)
 router.put("/upgrade/:id",verifyToken,isSuperAdmin,controller.upgradeRole)
 router.delete("/delete/:id",verifyToken,isSuperAdmin,controller.deleteAdmin)
