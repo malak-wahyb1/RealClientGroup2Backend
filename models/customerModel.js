@@ -13,7 +13,8 @@ const customerSchema = new Schema(
     phoneNum: {
       type: String,
       required: true,
-      unique:"the phone number is already used"
+      unique:"the phone number is already used",
+      match:/^(\+?\d{1,3}[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
     },
     email: {
       type: String,

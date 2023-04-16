@@ -9,7 +9,7 @@ import {
 } from "../controllers/orderController.js";
 import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-router.post("/",verifyToken, createOrder);
+router.post("/", createOrder);
 router.get("/:id",verifyToken, getOrder);
 router.get("/",verifyToken,isGeneralAdmin, getOrders);
 router.patch("/:id",verifyToken,isGeneralAdmin,editOrder)

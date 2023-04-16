@@ -40,5 +40,24 @@ const orderSchema = new Schema({
 orderSchema.pre(['find','findOne'],function(){
     this.populate(['customer','payment','product'])
 })
+orderSchema.pre(['save'], async function(next){
+  try {
+    const productIds = this.product.map(p => p.toString());
+    const products = await mongoose.model('product').find({
+      _id: { $in: productIds }
+    });
+  
+    for (const product of products) {
+      product.quantity -= 1;
+      await product.save();
+    }
+  
+    next();
+  } catch (err) {
+    next(err)
+   console.log(err);
+  }
+})
+
 const Order=model('Order',orderSchema)
 export default Order;

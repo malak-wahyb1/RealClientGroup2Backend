@@ -1,11 +1,13 @@
 import Order from "../models/orderModel.js";
-
+import Product from "../models/productModel.js";
 export function createOrder(req, res, next) {
   const order = new Order(req.body);
   order
     .save()
     .then((response) => {
       res.status(201).send({ status: 201, message: response });
+    
+    
     })
     .catch((err) => {
       next(err);
