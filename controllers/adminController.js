@@ -215,6 +215,13 @@ class Controller{
       next(err);
     }
   }
+
+  // logout 
+  async logout(req, res, next) {
+   await  res.clearCookie('jwt');
+    res.status(200).send({ message: 'Logged out successfully' });
+ 
+}
 }
 const controller = new Controller();
 
