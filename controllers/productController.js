@@ -89,7 +89,26 @@ class Controller {
         console.log(err);
       });
   }
+  // pagination
+ async getProducts(req, res, next) {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+  
+    try {
+      const products = await Product.find()
+        .skip((page - 1) * limit)
+        .limit(limit);
+  
+      res.status(200).send(products);
+    } catch (err) {
+      next(err);
+      console.log(err);
+    }
+  }
+  
+
 }
+
 
 const controller = new Controller();
 export default controller;

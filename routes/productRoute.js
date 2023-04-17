@@ -12,5 +12,6 @@ router.get("/byId/:id", controller.getById);
 router.post("/",verifyToken,isGeneralAdmin,uploadImage,  controller.addProduct);
 router.put("/:id",verifyToken,isGeneralAdmin, uploadImage,controller.editProduct);
 router.delete("/:id", verifyToken,isGeneralAdmin, controller.deleteProduct);
+router.get("/getProduct",controller.getProducts)
 export default router;
 
