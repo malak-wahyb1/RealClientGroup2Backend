@@ -1,6 +1,6 @@
 import Customer from "../models/customerModel.js";
 
-import bcrypt from 'bcryptjs'
+import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 export function createCustomer(req, res, next) {
@@ -59,38 +59,30 @@ export function deleteCustomer(req, res, next) {
 }
 
 export function loginCustomer(req, res, next) {
- const userLoggingIn=req.body;
-  Customer.findOne({email: userLoggingIn.email})
-  .then((customer) => {
-    if(!customer){
-      res.send({message:"invalid customer"})
-
+  const userLoggingIn = req.body;
+  Customer.findOne({ email: userLoggingIn.email }).then((customer) => {
+    if (!customer) {
+      res.send({ message: "invalid customer" });
     }
-    bcrypt.compare(userLoggingIn.password,customer.password)
-    .then((isCorrect)=>{
- 
-    
+    bcrypt
+      .compare(userLoggingIn.password, customer.password)
+      .then((isCorrect) => {
         const token = jwt.sign(
-          { id: customer._id,email:customer.email, role: customer.role },
-
+          { id: customer._id, email: customer.email, role: customer.role },
           process.env.JWT_KEY,
-
           {
-            expiresIn: 3000, 
+            expiresIn: 3000,
           }
         );
         res.cookie("jwt", token, {
           httpOnly: true,
-          maxAge: 3000 * 1000, // 3hrs in ms
+          maxAge: 3000 * 1000, 
         });
         res.status(201).json({
           message: "Admin successfully Logged in",
           user: customer._id,
           token,
         });
-     
-    })
-  })
-
-  
+      });
+  });
 }

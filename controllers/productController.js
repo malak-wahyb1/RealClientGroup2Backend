@@ -77,8 +77,8 @@ class Controller {
   }
   // create Product
 
-  async addProduct(req, res, next) {
-    const product = await new Product(req.body);
+   addProduct(req, res, next) {
+    const product =  new Product(req.body);
     product
       .save()
       .then((response) => {
@@ -89,7 +89,17 @@ class Controller {
         console.log(err);
       });
   }
+  async  getFourProductOnly(req, res) {
+    try {
+      const products = await Product.find().sort({ createdAt: -1 }).limit(4);
+      res.json(products);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server Error" });
+    }
+  }
 }
+
 
 const controller = new Controller();
 export default controller;

@@ -10,7 +10,7 @@ import {
 import uploadImage from "../middleware/image.js";
 import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-router.post("/", verifyToken,isGeneralAdmin,uploadImage, createCategory);
+router.post("/", uploadImage, createCategory);
 router.get("/:id", getCategory);
 router.get("/", getCategories);
 router.patch("/:id",verifyToken,isGeneralAdmin,uploadImage,editCategory)

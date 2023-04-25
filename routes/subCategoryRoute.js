@@ -3,7 +3,7 @@ import express from 'express'
 const router=express.Router();
 import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-router.post('/',verifyToken,isGeneralAdmin,addSubCategory)
+router.post('/',addSubCategory)
 router.get("/",getSubCategories)
 router.get('/:id',getSubCategory)
 router.patch('/:id',verifyToken,isGeneralAdmin,editSubCategory)

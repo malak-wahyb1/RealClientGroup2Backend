@@ -16,7 +16,7 @@ import OfferRoute from "./routes/offerRoute.js";
 import OrderRoute from "./routes/orderRoute.js";
 import ProductRoute from "./routes/productRoute.js";
 import reviewRoute from "./routes/reviewRooute.js";
-
+import cors from 'cors'
 
 dotenv.config();
 await connectDB();
@@ -33,6 +33,7 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send("you are connected!");
 })
+app.use(cors());
 app.use("/auth",adminRouter);
 app.use("/payment", PaymentRoute);
 app.use("/category", CategoryRoute);
