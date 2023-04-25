@@ -6,7 +6,8 @@ import {
   getCustomers,
   editCustomer,
   deleteCustomer,
-  loginCustomer
+  loginCustomer,
+  logout
 } from "../controllers/customerController.js";
 import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
@@ -16,4 +17,5 @@ router.get("/",verifyToken,isGeneralAdmin, getCustomers);
 router.patch("/:id", editCustomer);
 router.delete("/:id",verifyToken,isGeneralAdmin, deleteCustomer);
 router.post("/login",loginCustomer)
+router.post("/logout",verifyToken,logout)
 export default router;

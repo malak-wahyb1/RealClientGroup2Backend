@@ -83,6 +83,14 @@ export function loginCustomer(req, res, next) {
           user: customer._id,
           token,
         });
+
       });
   });
+
 }
+
+export function  logout(req, res, next)  {
+     res.clearCookie('jwt');
+    res.status(200).send({ message: 'Logged out successfully' });
+ 
+}  

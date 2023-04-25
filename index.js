@@ -16,6 +16,7 @@ import OfferRoute from "./routes/offerRoute.js";
 import OrderRoute from "./routes/orderRoute.js";
 import ProductRoute from "./routes/productRoute.js";
 import reviewRoute from "./routes/reviewRooute.js";
+
 import cors from 'cors'
 
 dotenv.config();

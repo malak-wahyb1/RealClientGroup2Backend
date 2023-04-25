@@ -11,5 +11,6 @@ router.put("/upgrade/:id",verifyToken,isSuperAdmin,controller.upgradeRole)
 router.delete("/delete/:id",verifyToken,isSuperAdmin,controller.deleteAdmin)
 router.get("/",controller.getallAdmin)
 router.put("/update/:id",verifyToken,isSuperAdmin,controller.updateAdmin)
+router.post("/logout",verifyToken,controller.logout)
 export default router;
 
