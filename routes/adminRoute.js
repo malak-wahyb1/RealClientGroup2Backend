@@ -9,7 +9,7 @@ router.post("/register",verifyToken,isSuperAdmin,controller.register)
 router.post("/login",controller.login)
 router.put("/upgrade/:id",verifyToken,isSuperAdmin,controller.upgradeRole)
 router.delete("/delete/:id",verifyToken,isSuperAdmin,controller.deleteAdmin)
-router.get("/",verifyToken,isSuperAdmin,controller.getallAdmin)
+router.get("/",controller.getallAdmin)
 router.put("/update/:id",verifyToken,isSuperAdmin,controller.updateAdmin)
 router.post("/logout",verifyToken,controller.logout)
 export default router;
