@@ -10,7 +10,7 @@ import {
 
 import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-router.post("/",verifyToken, createContact);
+router.post("/", createContact);
 router.get("/",verifyToken, isGeneralAdmin,getContacts);
 router.get("/:id",verifyToken,isGeneralAdmin, getContact);
 router.delete("/:id",verifyToken,isGeneralAdmin, deleteContact);
