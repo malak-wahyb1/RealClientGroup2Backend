@@ -7,10 +7,6 @@ const reviewSchema = new Schema({
   required: [true, 'Why no bacon?'],
   ref:"Customer"
  },
- message:{
-  type:"string",
-
- },
  review:{
   type:"number",
   enum:[1,2,3,4,5]
