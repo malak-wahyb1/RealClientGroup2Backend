@@ -4,12 +4,12 @@ import {Schema , model} from "mongoose";
 const reviewSchema = new Schema({
  customer:{
   type:Schema.Types.ObjectId,
-  required: [true, 'Why no bacon?'],
+  // required: [true, 'Why no bacon?'],
   ref:"Customer"
  },
  review:{
-  type:"number",
-  enum:[1,2,3,4,5]
+  type:Number,
+  
  }
 },{
   timestamps: {

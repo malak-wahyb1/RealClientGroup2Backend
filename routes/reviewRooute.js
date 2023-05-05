@@ -4,7 +4,7 @@ import {createReview,getReview, updateReview,getReviews,deleteReview } from '../
 const reviewRoute = express.Router();
 import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
-reviewRoute.post('/',verifyToken, createReview);
+reviewRoute.post('/', createReview);
 reviewRoute.get('/:id',verifyToken,isGeneralAdmin, getReview);
 reviewRoute.get('/',verifyToken,isGeneralAdmin, getReviews);
 
