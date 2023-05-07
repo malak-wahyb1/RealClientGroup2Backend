@@ -6,7 +6,7 @@ import { isGeneralAdmin, verifyToken } from '../middleware/auth.js';
 
 reviewRoute.post('/',verifyToken, createReview);
 reviewRoute.get('/:id',verifyToken,isGeneralAdmin, getReview);
-reviewRoute.get('/',verifyToken,isGeneralAdmin, getReviews);
+reviewRoute.get('/', getReviews);
 
 reviewRoute.put('/:id',verifyToken,isGeneralAdmin, updateReview);
 reviewRoute.delete('/:id',verifyToken,isGeneralAdmin, deleteReview);
